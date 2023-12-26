@@ -1,0 +1,49 @@
+*.annot
+*.cmo
+*.cma
+*.cmi
+*.a
+*.o
+*.cmx
+*.cmxs
+*.cmxa
+
+# log files
+ex/*.log
+
+# ocamlbuild working directory
+_build/
+
+# ocamlbuild targets
+*.byte
+*.native
+*.mldylib
+
+# oasis generated files
+setup.data
+setup.log
+Makefile
+myocamlbuild.ml
+setup.ml
+configure
+_tags
+META
+
+# Merlin configuring file for Vim and Emacs
+.merlin
+
+# Dune generated files
+*.install
+
+# Local OPAM switch
+_opam/
+ex/msq.out1.c.log
+out/inter_*.c
+out/itl_*.c
+src/equiv_lib.mllib
+out/feas*.c
+tmp.out*
+bench/*.dot
+bench/*.pdf
+results.*
+shortresults.*

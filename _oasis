@@ -1,0 +1,48 @@
+OASISFormat    : 0.4
+OCamlVersion   : > 4.01.0
+FindlibVersion : >= 1.3.2
+BuildTools     : ocamlbuild
+# AlphaFeatures  : ocamlbuild_more_args
+# XOCamlbuildPluginTags: package(cppo_ocamlbuild)
+Plugins        : META (0.4), DevFiles (0.4)
+
+Name           : Cion
+Version        : 0.1
+Synopsis       : Trace Composition Verification
+License        : LGPL with OCaml linking exception
+Authors        : ...
+Description    : Trace Composition Verification
+Homepage       : http://...
+
+Executable "cion"
+  Path           : src
+  MainIs         : main.ml
+#  BuildTools     : ocamlbuild # camlp4of
+  CompiledObject : native
+  ByteOpt        : -rectypes -custom camlp4lib.cma -w -a+8 -warn-error -a -g 
+  NativeOpt      : -rectypes camlp4lib.cmxa -w -a+8 -warn-error -a 
+  Install        : false
+  BuildDepends   : cil,
+                   camlp4
+#                    symkat14,
+#                    safa14
+
+# Library symkat14
+#   Path    : symkat-1.4
+#   BuildTools     : ocamlbuild
+#   Modules : Kat
+#   FindlibName    : symkat14
+#   CompiledObject : native
+#   ByteOpt        : -rectypes -annot -g
+#   NativeOpt      : -rectypes -annot -g
+#   BuildDepends : safa14
+
+# Library safa14
+#   Path    : safa-1.4
+#   Modules : Safacommon, Safa
+#   InternalModules : Automata, Bdd, Congruence, Safatrace
+#   BuildTools     : ocamlbuild
+#   FindlibName    : safa14
+#   CompiledObject : native
+#   ByteOpt        : -rectypes -annot -g
+#   NativeOpt      : -rectypes -annot -g
