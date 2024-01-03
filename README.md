@@ -1,5 +1,13 @@
 # CION: Concurrent Trace Reductions
 
+## Requirements
+
+This has been tested on X86_64 Ubuntu 20.04.6 LTS.
+
+It may also work on other systems, but it depends on an older version of
+OCaml (4.05.0). To our knowledge that older version is not available for
+ARM.
+
 ## Dependencies
 
 0. Basic packages:
