@@ -7,10 +7,13 @@ for f in $BENCHES; do
     ./main.native bench/$f.c 2>&1 > results.$f.txt
     dot -Tpdf bench/$f.c.dot -o bench/$f.c.pdf
     echo "--- $f complete ---"
-    echo "Resulting layers: bench/$f.c.tex"
-    echo "Resulting logfile: results.$f.txt"
-    echo "Resulting tex table line:"
+    echo "Logfile: results.$f.txt"
+    echo "Output latex: bench/$f.c.tex"
+    echo "Output DOT: bench/$f.c.dot"
+    echo "Output PDF: bench/$f.c.pdf"
+    echo "Output latex table line:"
     grep RESULT results.$f.txt
 done
 
-cp bench/*.c.pdf ~/Desktop/Parallels\ Shared\ Folders/Home/Desktop/
+echo "=== Automata summaries ==="
+ls bench/*.c.pdf
