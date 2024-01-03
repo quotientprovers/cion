@@ -13,19 +13,22 @@ opam switch create 4.05.0
 opam install cil ocamlfind ocamlbuild oasis camlp4
 ```
 
-2. Install Ultimate Automizer and SymLink
+2. Install Ultimate Automizer
 
-After unziping [the Ultimate release](https://github.com/ultimate-pa/ultimate/releases/download/v0.2.1/UltimateAutomizer-linux.zip), the zip file creates a folder called "UAutomizer-...". Create a symlink to this folder from "~/ultimate/":
+After unziping [the Ultimate release](https://github.com/ultimate-pa/ultimate/releases/download/v0.2.1/UltimateAutomizer-linux.zip), 
+the zip file creates a folder called "UAutomizer-...". 
 ```
-cd ~
 wget https://github.com/ultimate-pa/ultimate/releases/download/v0.2.1/UltimateAutomizer-linux.zip
 unzip UltimateAutomizer-linux.zip 
-ln -s UltimateAutomizer-linux ~/ultimate/
 ```
+(Below you will set the `ULTIMATE_HOME` environment variable to point Cion at Ultimate.)
 
 ## Installation
 
+Go into the Cion repository and compile it:
+
 ```
+cd cion-master/
 oasis setup
 make
 ```
@@ -41,6 +44,7 @@ dot -Tsvg bench/counter.c.dot -o bench/counter.c.svg # Optional
 
 To run all the benchmarks:
 ```
+export ULTIMATE_HOME=~/UAutomizer-linux/
 ./runall.sh
 ```
 
