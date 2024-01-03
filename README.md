@@ -94,7 +94,9 @@ void __fullstates() {
 void __choice() { ... } // see bench/listset3.c
 ```
 
-4. The C file must also define the initial state. 
-This is configured in `get_init_stmts` in `src/aut.ml`.
-
-5. Currently, Ultimate assumes that uninitialized fields are 0. However, we want them to be nondeterministic. Therefore you must also update `src/aut.ml` function `get_init_stmts` to specify which variables should be nondeterministically assigned. In the future this should be replaced with an Ultimate configuration flag.
+4. The C file must also define the initial state because,
+currently, Ultimate assumes that uninitialized fields are 0.
+Typically we want them to instead be nondeterministic. 
+Therefore you must also update `src/aut.ml` function `get_init_stmts`
+to specify which variables should be nondeterministically assigned. 
+(In the future this should be replaced with an Ultimate configuration flag.)
