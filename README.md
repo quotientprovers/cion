@@ -68,7 +68,7 @@ void incr() {
 This is configured in `get_state_exprs_tmp` in `src/aut.ml`
 and can be done in one of three ways:
 
-3.1. As atomic propositions (from which Cion will construct states based on all possible combinations of truth variables):
+  * Option 1: As atomic propositions (from which Cion will construct states based on all possible combinations of truth variables):
 ```
 void __states() {
   int _ap1; int _ap2;
@@ -77,7 +77,7 @@ void __states() {
 }
 ```
    
-3.2. As full descriptions of the states (you can use LAND2, LAND3 etc for {2,3}-ary logical AND)
+  * Option 2: As full descriptions of the states (you can use LAND2, LAND3 etc for {2,3}-ary logical AND)
 ```
 void __fullstates() {
     int _st1, _st2, _st3, _st4;
@@ -85,7 +85,7 @@ void __fullstates() {
     _st2 = LAND3(gy->key < gk, !gx->del, gx->next == gy); 
 ```
 
-3.3. As a series of choices:
+  * Option 3: As a series of choices:
 ```
 void __choice() { ... } // see bench/listset3.c
 ```
