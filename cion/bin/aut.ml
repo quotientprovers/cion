@@ -118,7 +118,7 @@ let load_states_from_choice allglobals : C.exp list =
                   List.map (fun i -> match i with 
                      | Call(_,fn,[a1;a2],_) -> 
                         Printf.printf "  found CHOICE (%s or %s)\n" (Utils.pp_exp a1) (Utils.pp_exp a2); 
-                              (String.concat " /\\ " (List.map (fun a -> Utils.pp_exp a) [a1;a2]));
+                              (* (String.concat " /\\ " (List.map (fun a -> Utils.pp_exp a) [a1;a2])); *)
                         (a1,a2)
                      (* __state = e;*)
                   ) il

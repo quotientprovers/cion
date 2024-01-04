@@ -1,4 +1,6 @@
 (executable
  (public_name cion)
  (name main)
- (libraries cion))
+ (libraries cil)
+ (flags (:standard -w -A))
+)

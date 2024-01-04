@@ -42,7 +42,7 @@ end
 let print_sid sid (fd:C.fundec) : unit =
    print_endline ("[[sid="^(string_of_int sid)^" statement is:");
    let v = (new sidVisitor(sid)) in
-   visitCilFunction (v :> nopCilVisitor) fd;
+   ignore (visitCilFunction (v :> nopCilVisitor) fd);
    if v#found() = false then print_endline "NOT FOUND!";
    print_endline "\n]]";
    ()

@@ -18,7 +18,7 @@ sudo apt-get install opam graphviz
 
 ```
 opam switch create 4.05.0 
-opam install cil ocamlfind ocamlbuild oasis camlp4
+opam install cil ocamlfind ocamlbuild oasis camlp4 dune
 ```
 
 2. Install Ultimate Automizer
@@ -42,6 +42,10 @@ make
 ```
 
 ## Running
+
+```
+dune exec cion
+```
 
 To run a single file:
 ```
