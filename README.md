@@ -51,8 +51,7 @@ Cion can be executed as follows, where the final argument is one of the benchmar
 export ULTIMATE_HOME=~/UAutomizer-linux/
 cd cion-master/cion/
 dune exec cion counter
-dot -Tsvg ../bench/counter.c.dot -o ../bench/counter.c.svg # Optional
-
+dot -Tpdf ../bench/counter.c.dot -o ../bench/counter.c.pdf # Optional
 ```
 
 To run all the benchmarks:

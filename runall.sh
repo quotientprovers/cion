@@ -18,7 +18,7 @@ for f in $BENCHES; do
 done
 
 echo "=== Automata summaries ==="
-ls bench/*.c.pdf
+ls ../bench/*.c.pdf
 
 echo "=== Latex Table from paper: ==="
 grep RESULT results.*.txt

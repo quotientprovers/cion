@@ -123,7 +123,7 @@ let run cmd fn =
 
 let get_ctr() = !ctr
 let last_fn () = 
-  ("out/feas"^(string_of_int !ctr)^".c")
+  ("/tmp/feas"^(string_of_int !ctr)^".c")
 (* **************************************************************** *)
 (* check feasibility *)
 (* **************************************************************** *)

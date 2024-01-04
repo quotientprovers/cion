@@ -145,7 +145,7 @@ let get_bench s =
        Utils.mkLand (Utils.neg locked) descNull;
        Utils.mkLand (Utils.neg locked) (Utils.neg descNull);
     ]);
-    expected_layers=5;
+    expected_layers=6;
     expected_transitions=6;
   }
   (**** Configuration for: Treiber's Stack ****)
@@ -157,7 +157,7 @@ let get_bench s =
       (* let states = load_from_fun allglobals in
       List.iter (fun s -> Printf.printf "Loaded state: %s\n" (Utils.pp_exp s)) states;
       states *)
-    expected_layers=4;
+    expected_layers=5;
     expected_transitions=6;
   }
   (**** Configuration for: Michael/Scott Queue ****)
