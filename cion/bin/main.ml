@@ -22,9 +22,10 @@ let argExists str : bool =
 
 let _ =
   if Array.length Sys.argv <= 1 then 
-    failwith ("usage: "^Sys.argv.(0)^" <filename.c> [--disablePostCheck] [--shortOutput]")
+    failwith ("usage: "^Sys.argv.(0)^" <BenchmarkName> [--disablePostCheck] [--shortOutput]")
   else
-  let filename = Sys.argv.(1) in
+  let bm = Benchmarks.get_bench Sys.argv.(1) in
+  let filename = bm.filename in
   let c = F.parse filename () in
   computeFileCFG c;
   let fds = allFds c.globals in
@@ -34,8 +35,8 @@ let _ =
   print_endline "\n+ found all paths. here they are:";
   print_endline (Path.pp_paths roPaths "\n---\n");
   print_endline (Path.pp_paths wrPaths "\n---\n");
-  let qs = Aut.get_state_exprs_tmp c.globals filename in
-  let inits : C.stmt list = Aut.get_init_stmts filename in
+  let qs = bm.make_state_exprs c.globals in
+  let inits : C.stmt list = bm.init_stmts in
   let t0 = Unix.gettimeofday () in (*Sys.time() in*)
   let disablePostCheck = argExists "--disablePostCheck" in
   let shortOutput = argExists "--shortOutput" in
@@ -45,6 +46,6 @@ let _ =
   let stats_out = Alg.algorithm roPaths wrPaths qs c.globals inits (filename^".tex") (filename^".dot") disablePostCheck shortOutput stats_in in
   print_endline (Statistics.pp stats_out (Unix.gettimeofday () -. t0));
   Solver.dig_persist ();
-  Statistics.check stats_out;
+  Statistics.check stats_out bm.expected_transitions bm.expected_layers;
   print_endline ("+ complete. output: "^filename^".tex");
 

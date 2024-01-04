@@ -16,9 +16,11 @@ sudo apt-get install opam graphviz
 ```
 1. Install OCaml, CIL, etc:
 
+Note that 4.05.0 is needed for CIL.
+
 ```
 opam switch create 4.05.0 
-opam install cil ocamlfind ocamlbuild oasis camlp4 dune
+opam install cil ocamlfind ocamlbuild camlp4 dune
 ```
 
 2. Install Ultimate Automizer
@@ -36,27 +38,27 @@ unzip UltimateAutomizer-linux.zip
 Go into the Cion repository and compile it:
 
 ```
-cd cion-master/
-oasis setup
-make
+cd cion-master/cion/
+dune build
 ```
 
 ## Running
 
-```
-dune exec cion
-```
+Cion can be executed as follows, where the final argument is one of the benchmarks
+(`counter`, `descriptor`, `treiber`, `msq`, etc.) as defined in `cion/bin/benchmarks.ml`:
 
-To run a single file:
 ```
 export ULTIMATE_HOME=~/UAutomizer-linux/
-./main.native bench/counter.c
-dot -Tsvg bench/counter.c.dot -o bench/counter.c.svg # Optional
+cd cion-master/cion/
+dune exec cion counter
+dot -Tsvg ../bench/counter.c.dot -o ../bench/counter.c.svg # Optional
+
 ```
 
 To run all the benchmarks:
 ```
 export ULTIMATE_HOME=~/UAutomizer-linux/
+cd cion-master/
 ./runall.sh
 ```
 
@@ -109,6 +111,7 @@ void __choice() { ... } // see bench/listset3.c
 4. The C file must also define the initial state because,
 currently, Ultimate assumes that uninitialized fields are 0.
 Typically we want them to instead be nondeterministic. 
-Therefore you must also update `src/aut.ml` function `get_init_stmts`
-to specify which variables should be nondeterministically assigned. 
+Therefore you must also update `src/benchmarks.ml` and set the 
+benchmark's `init_stmts` configuration to specify which variables
+should be nondeterministically assigned. 
 (In the future this should be replaced with an Ultimate configuration flag.)

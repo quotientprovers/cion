@@ -160,7 +160,7 @@ let iter_q_qs (f: 'a -> 'a list -> unit) (qs:'a list) : unit =
 
 let rec find_fd gls funname : C.fundec =
   match gls with 
-  | [] -> failwith "find_fd: not found"
+  | [] -> failwith ("find_fd: no globals so can't find fd for function "^funname)
   | GFun(fd,_) :: rest when (String.equal fd.svar.vname funname) -> fd
   | _ :: rest -> find_fd rest funname
 

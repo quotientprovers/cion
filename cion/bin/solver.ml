@@ -129,7 +129,7 @@ let last_fn () =
 (* **************************************************************** *)
 let feasible note locals stmts fd allglobals : bool = 
   ctr := !ctr + 1;
-  let fn = "out/feas"^(string_of_int !ctr)^".c" in
+  let fn = "/tmp/feas"^(string_of_int !ctr)^".c" in
   if debug then Printf.printf "\nSolver: feasibility check: %s\n" fn;
   let assert_false = (mkStmtOneInstr (Utils.mkAssert (Cil.zero) Utils.dumLoc)) in
   let funname = "main" in
@@ -151,8 +151,12 @@ let feasible note locals stmts fd allglobals : bool =
   C.dumpGlobal C.defaultCilPrinter oc (GText("// " ^ note));
   C.dumpGlobal C.defaultCilPrinter oc (GFun(blk,Utils.dumLoc)); 
   close_out oc;
+  (* create the reachability property file in /tmp *)
+  let ocr = Pervasives.open_out "/tmp/reach.prp" in
+  Pervasives.output_string ocr "CHECK( init(main()), LTL(G ! call(__VERIFIER_error())) )";
+  close_out ocr;
   if debug then print_endline ("generated feasbility task: "^fn);
-  let cmd = ("./Ultimate.py --spec ~/cion/reach/reach.prp --architecture 64bit --file ~/cion/" ^ fn) in
+  let cmd = ("./Ultimate.py --spec /tmp/reach.prp --architecture 64bit --file " ^ fn) in
   match run cmd fn with 
   | Some(STrue) -> save_dig fn STrue; false
   | Some(SFalse) -> save_dig fn SFalse; true

@@ -22,20 +22,15 @@ let mkProblem fn rpaths wpaths _qs =
 let mkSolution stats_in numTrans numLayers qs =
   { problem=stats_in; transitions=numTrans; layers=numLayers; queries = qs }
 
-let check stats_out =
+let check stats_out expected_transitions expected_layers =
    let _assert trans layers = 
+      Printf.printf "does %d=%d?\n" stats_out.transitions trans;
       assert (stats_out.transitions == trans);
+      Printf.printf "does %d=%d?\n" stats_out.layers layers;
       assert (stats_out.layers == layers)
   in 
   Printf.printf "Statistics.check %s. trans=%d, layers=%d\n" stats_out.problem.filename stats_out.transitions stats_out.layers;
-   match stats_out.problem.filename with 
-   | "bench/evenodd.c"    -> _assert  6 3
-   | "bench/counter.c"    -> _assert  6 5
-   | "bench/descriptor.c" -> _assert  6 5
-   | "bench/treiber.c"    -> _assert  6 4
-   | "bench/msq.c"        -> _assert 17 7
-   | "bench/listset.c"    -> _assert 77 8
-   | _ -> failwith ("Stats: unfamiliar with "^stats_out.problem.filename)
+  _assert expected_transitions expected_layers
 
 let pp stats_out tm = 
   print_endline "                (filename)          states RdPaths WrPaths #Trans #layers Time Queries";
