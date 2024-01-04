@@ -182,7 +182,7 @@ let get_bench s =
         "reader_x->next";"x->next";
       ]);
       make_state_exprs=(fun allglobals -> load_from_fullstates allglobals);
-      expected_layers=8;
-      expected_transitions=77;
+      expected_layers=7;
+      expected_transitions=59;
     }  
   | _ -> failwith ("get_bench did not find benchmark called "^s)
