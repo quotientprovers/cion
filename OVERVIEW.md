@@ -27,7 +27,7 @@ Apart from the X86_64 architecture, there are no particular hardware requirement
 ```
 sudo apt-get update
 sudo apt-get install docker.io
-wget https://zenodo.org/records/10459656/files/cion-docker.tar.gz?download=1
+wget https://zenodo.org/records/10460944/files/cion-docker.tar.gz?download=1
 gunzip cion-docker.tar.gz
 sudo docker load --input cion-docker.tar
 sudo docker run --name testcion -it cion:latest
