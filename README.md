@@ -2,11 +2,8 @@
 
 ## Requirements
 
-This has been tested on X86_64 Ubuntu 20.04.6 LTS.
-
-It may also work on other systems, but it depends on an older version of
-OCaml (4.05.0). To our knowledge that older version is not available for
-ARM.
+ * **Source Code**. Compiling from source has been tested on X86_64 Ubuntu 20.04.6 LTS. It may also work on other systems, but it depends on an older version of OCaml (4.05.0). To our knowledge that older version is not available for ARM.
+ * **Docker Image**. The docker image has also been tested on X86_64 Ubuntu and a user reported that the docker image also works on an ARM-based MacBook Pro (M2).
 
 ## Dependencies
 
